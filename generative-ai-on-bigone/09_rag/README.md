@@ -1,60 +1,60 @@
-# Chapter 9: Context-Aware Reasoning Applications using RAG and Agents
+# 第九章：使用 RAG 和代理的上下文感知推理应用程序
 [![](../img/gaia_book_cover_sm.png)](https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/)
 
-# Questions and Answers
+# 问题与解答
 
-_Q: What limitations do large language models face in context-aware reasoning?_
+_问：大型语言模型在上下文感知推理方面面临哪些限制？_
 
-A: Large language models (LLMs) face challenges in having accurate and current knowledge, leading to issues like hallucination and knowledge cutoff.
+答：大型语言模型 (LLM) 在拥有准确和最新的知识方面面临挑战，从而导致幻觉和知识截止等问题。
 
-_Q: How does hallucination and knowledge cutoff impact model accuracy?_
+_问：幻觉和知识截止如何影响模型的准确性？_
 
-A: Hallucination leads to the generation of incorrect or irrelevant information, while knowledge cutoff limits the model's understanding to information available up to a certain date, impacting the accuracy of responses.
+答：幻觉会导致生成不正确或不相关的信息，而知识截止会将模型的理解限制在截至某个日期的可用信息范围内，从而影响响应的准确性。
 
-_Q: What is retrieval-augmented generation (RAG), and how does it work?_
+_问：什么是检索增强生成 (RAG)，它是如何工作的？_
 
-A: RAG is a framework that provides LLMs access to data they did not see during training. It overcomes knowledge limitations by allowing LLM-powered applications to use external data sources.
+答：RAG 是一个框架，它允许 LLM 访问在训练期间未见过的数据。它通过允许 LLM 驱动的应用程序使用外部数据源来克服知识限制。
 
-_Q: How do external sources of knowledge contribute to RAG?_
+_问：外部知识来源如何促进 RAG？_
 
-A: External sources of knowledge in RAG provide additional data not contained within the LLM's parametric memory, helping to mitigate issues like hallucination and knowledge cutoff.
+答：RAG 中的外部知识来源提供了 LLM 参数内存中未包含的额外数据，有助于缓解幻觉和知识截止等问题。
 
-_Q: What is the significance of document loading and chunking in RAG?_
+_问：文档加载和分块在 RAG 中的意义是什么？_
 
-A: Document loading and chunking are important in RAG for organizing and processing external data, making it accessible for the model to enhance its knowledge base and reasoning capabilities".
+答：文档加载和分块在 RAG 中对于组织和处理外部数据非常重要，使其可供模型访问以增强其知识库和推理能力。
 
-_Q: Can you explain the RAG workflow and its implementation?_
+_问：你能解释一下 RAG 工作流程及其实现吗？_
 
-A: The RAG workflow involves integrating external data sources with LLMs, using processes like document loading, chunking, and retrieval-augmented methods to enhance the model's responses with additional, relevant information.
+答：RAG 工作流程涉及将外部数据源与 LLM 集成，使用文档加载、分块和检索增强等方法，利用额外的相关信息增强模型的响应。
 
-_Q: What are the key considerations in developing context-aware reasoning applications?_
+_问：开发上下文感知推理应用程序的关键考虑因素是什么？_
 
-A: Key considerations include managing the accuracy of knowledge, updating information regularly, and integrating external data sources effectively to address hallucination and knowledge cutoff issues.
+答：关键考虑因素包括管理知识的准确性、定期更新信息以及有效集成外部数据源，以解决幻觉和知识截止问题。
 
-_Q: How does embedding vector store and retrieval affect RAG's performance?_
+_问：嵌入向量存储和检索如何影响 RAG 的性能？_
 
-A: Embedding vector storage and retrieval are crucial in RAG for efficiently managing and accessing relevant external data, which significantly enhances the model's performance by providing additional context and information.
+答：嵌入向量存储和检索对于 RAG 有效管理和访问相关的外部数据至关重要，通过提供额外的上下文和信息，可以显著提高模型的性能。
 
-_Q: What are some effective strategies for reranking with maximum marginal relevance?_
+_问：使用最大边际相关性进行重新排序有哪些有效策略？_
 
-A: Effective strategies include using algorithms that prioritize relevance and diversity in the retrieval results, ensuring that the most pertinent and varied information is presented in response to queries.
+答：有效的策略包括使用算法在检索结果中优先考虑相关性和多样性，确保针对查询呈现最相关和最多样的信息。
 
-# Chapters
-* [Chapter 1](/01_intro) - Generative AI Use Cases, Fundamentals, Project Lifecycle
-* [Chapter 2](/02_prompt) - Prompt Engineering and In-Context Learning
-* [Chapter 3](/03_foundation) - Large-Language Foundation Models
-* [Chapter 4](/04_optimize) - Quantization and Distributed Computing
-* [Chapter 5](/05_finetune) - Fine-Tuning and Evaluation
-* [Chapter 6](/06_peft) - Parameter-efficient Fine Tuning (PEFT)
-* [Chapter 7](/07_rlhf) - Fine-tuning using Reinforcement Learning with RLHF
-* [Chapter 8](/08_deploy) - Optimize and Deploy Generative AI Applications
-* [Chapter 9](/09_rag) - Retrieval Augmented Generation (RAG) and Agents
-* [Chapter 10](/10_multimodal) - Multimodal Foundation Models
-* [Chapter 11](/11_diffusers) - Controlled Generation and Fine-Tuning with Stable Diffusion
-* [Chapter 12](/12_bedrock) - Amazon Bedrock Managed Service for Generative AI
+# 章节
+* [第一章](/01_intro) - 生成式人工智能用例、基础知识、项目生命周期
+* [第二章](/02_prompt) - 提示工程和上下文学习
+* [第三章](/03_foundation) - 大型语言基础模型
+* [第四章](/04_optimize) - 量化和分布式计算
+* [第五章](/05_finetune) - 微调和评估
+* [第六章](/06_peft) - 参数高效微调 (PEFT)
+* [第七章](/07_rlhf) - 使用带有 RLHF 的强化学习进行微调
+* [第八章](/08_deploy) - 优化和部署生成式人工智能应用程序
+* [第九章](/09_rag) - 检索增强生成 (RAG) 和代理
+* [第十章](/10_multimodal) - 多模态基础模型
+* [第十一章](/11_diffusers) - 使用 Stable Diffusion 进行受控生成和微调
+* [第十二章](/12_bedrock) - 用于生成式人工智能的 Amazon Bedrock 托管服务
 
-# Related Resources
-* YouTube Channel: https://youtube.generativeaionaws.com
-* Generative AI on AWS Meetup (Global, Virtual): https://meetup.generativeaionaws.com
-* Generative AI on AWS O'Reilly Book: https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
-* Data Science on AWS O'Reilly Book: https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/
+# 相关资源
+* YouTube 频道：https://youtube.generativeaionaws.com
+* 生成式人工智能 AWS Meetup（全球，虚拟）：https://meetup.generativeaionaws.com
+* AWS 上的生成式人工智能 O'Reilly 图书：https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
+* AWS 上的数据科学 O'Reilly 图书：https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/

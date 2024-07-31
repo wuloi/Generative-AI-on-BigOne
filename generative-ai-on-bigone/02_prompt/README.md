@@ -1,60 +1,60 @@
-# Chapter 2: Prompt Engineering and In-Context Learning
+# 第二章：提示工程和上下文学习
 [![](../img/gaia_book_cover_sm.png)](https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/)
 
-# Questions and Answers
+# 问题与解答
 
-_Q: How do prompts and completions work in Generative AI?_
+_问：提示和补全在生成式人工智能中是如何工作的？_
 
-A: Prompts in Generative AI involve text-based input, including instructions, context, and constraints for a task. The AI model responds with a 'completion' that could be text, image, video, or audio, depending on the model's training.
+答：生成式人工智能中的提示涉及基于文本的输入，包括任务的指令、上下文和约束。人工智能模型会以“补全”作为响应，根据模型训练的不同，补全可以是文本、图像、视频或音频。
 
-_Q: What role do tokens play in prompt engineering?_
+_问：标记在提示工程中扮演什么角色？_
 
-A: In prompt engineering, tokens are crucial as generative models convert text-based prompts and completions into sequences of tokens or word fragments. These tokens represent words and enable the model to process and generate language-based responses.
+答：在提示工程中，标记至关重要，因为生成式模型会将基于文本的提示和补全转换为标记或词片段序列。这些标记代表单词，使模型能够处理和生成基于语言的响应。
 
-_Q: Can you explain the concept of prompt structure?_
+_问：你能解释一下提示结构的概念吗？_
 
-A: Prompt structure typically includes instruction, context, input data, and output indicator. Effective prompt engineering involves creating a prompt structure that guides the model towards the desired output, with clarity, specificity, and context.
+答：提示结构通常包括指令、上下文、输入数据和输出指示符。有效的提示工程涉及创建一个提示结构，以清晰、具体和上下文的方式引导模型生成所需的输出。
 
-_Q: What is in-context learning in Generative AI?_
+_问：什么是生成式人工智能中的上下文学习？_
 
-A: In-context learning in Generative AI involves passing multiple prompt-completion pairs along with the prompt input. This technique temporarily alters the model's behavior for that request, encouraging it to respond in ways similar to the examples provided in the context.
+答：生成式人工智能中的上下文学习涉及传递多个提示-补全对以及提示输入。这种技术会暂时改变模型对该请求的行为，鼓励其以类似于上下文中提供的示例的方式进行响应。
 
-_Q: How does few-shot inference differ from zero-shot and one-shot inference?_
+_问：少样本推理与零样本推理和单样本推理有何不同？_
 
-A: Few-shot inference involves providing multiple examples within the prompt context for the model to learn from. In contrast, one-shot inference uses a single example, and zero-shot inference uses no examples, relying on the model's preexisting knowledge and generalization capabilities.
+答：少样本推理涉及在提示上下文中提供多个示例供模型学习。相比之下，单样本推理使用单个示例，而零样本推理不使用任何示例，而是依赖于模型预先存在的知识和泛化能力。
 
-_Q: What are some best practices for in-context learning?_
+_问：上下文学习有哪些最佳实践？_
 
-A: For effective in-context learning, start with zero-shot inference and progress to one-shot or few-shot if needed. Ensure the mix of examples is consistent and appropriate for the task. The context shouldn't exceed the model's input size or context window.
+答：为了实现有效的上下文学习，请从零样本推理开始，并在需要时逐步过渡到单样本推理或少样本推理。确保示例的组合一致且适合任务。上下文不应超过模型的输入大小或上下文窗口。
 
-_Q: What are some effective prompt-engineering techniques?_
+_问：有哪些有效的提示工程技术？_
 
-A: Effective prompt-engineering techniques include being clear and concise, being creative, moving the instruction to the end of the prompt for longer texts, clearly conveying the subject, using explicit directives, avoiding negative formulations, including context and few-shot examples, specifying response size, and providing a specific response format.
+答：有效的提示工程技术包括清晰简洁、富有创意、将指令移至较长文本的末尾、清晰传达主题、使用明确的指令、避免否定表述、包含上下文和少样本示例、指定响应大小以及提供特定的响应格式。
 
-_Q: What inference configuration parameters are critical in prompt engineering?_
+_问：在提示工程中，哪些推理配置参数至关重要？_
 
-A: Critical inference configuration parameters in prompt engineering include temperature and top k, which control the model's creativity in generating content.
+答：提示工程中至关重要的推理配置参数包括温度和 top k，它们控制着模型在生成内容时的创造力。
 
-_Q: How does prompt structure affect the performance of a Generative AI model?_
+_问：提示结构如何影响生成式人工智能模型的性能？_
 
-A: Prompt structure affects a Generative AI model's performance by guiding it towards the desired output.
+答：提示结构通过引导生成式人工智能模型生成所需的输出，从而影响其性能。
 
-# Chapters
-* [Chapter 1](/01_intro) - Generative AI Use Cases, Fundamentals, Project Lifecycle
-* [Chapter 2](/02_prompt) - Prompt Engineering and In-Context Learning
-* [Chapter 3](/03_foundation) - Large-Language Foundation Models
-* [Chapter 4](/04_optimize) - Quantization and Distributed Computing
-* [Chapter 5](/05_finetune) - Fine-Tuning and Evaluation
-* [Chapter 6](/06_peft) - Parameter-efficient Fine Tuning (PEFT)
-* [Chapter 7](/07_rlhf) - Fine-tuning using Reinforcement Learning with RLHF
-* [Chapter 8](/08_deploy) - Optimize and Deploy Generative AI Applications
-* [Chapter 9](/09_rag) - Retrieval Augmented Generation (RAG) and Agents
-* [Chapter 10](/10_multimodal) - Multimodal Foundation Models
-* [Chapter 11](/11_diffusers) - Controlled Generation and Fine-Tuning with Stable Diffusion
-* [Chapter 12](/12_bedrock) - Amazon Bedrock Managed Service for Generative AI
+# 章节
+* [第一章](/01_intro) - 生成式人工智能用例、基础知识、项目生命周期
+* [第二章](/02_prompt) - 提示工程和上下文学习
+* [第三章](/03_foundation) - 大型语言基础模型
+* [第四章](/04_optimize) - 量化和分布式计算
+* [第五章](/05_finetune) - 微调和评估
+* [第六章](/06_peft) - 参数高效微调 (PEFT)
+* [第七章](/07_rlhf) - 使用带有 RLHF 的强化学习进行微调
+* [第八章](/08_deploy) - 优化和部署生成式人工智能应用程序
+* [第九章](/09_rag) - 检索增强生成 (RAG) 和代理
+* [第十章](/10_multimodal) - 多模态基础模型
+* [第十一章](/11_diffusers) - 使用 Stable Diffusion 进行受控生成和微调
+* [第十二章](/12_bedrock) - 用于生成式人工智能的 Amazon Bedrock 托管服务
 
-# Related Resources
-* YouTube Channel: https://youtube.generativeaionaws.com
-* Generative AI on AWS Meetup (Global, Virtual): https://meetup.generativeaionaws.com
-* Generative AI on AWS O'Reilly Book: https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
-* Data Science on AWS O'Reilly Book: https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/
+# 相关资源
+* YouTube 频道：https://youtube.generativeaionaws.com
+* 生成式人工智能 AWS Meetup（全球，虚拟）：https://meetup.generativeaionaws.com
+* AWS 上的生成式人工智能 O'Reilly 图书：https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
+* AWS 上的数据科学 O'Reilly 图书：https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/

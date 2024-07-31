@@ -1,51 +1,51 @@
-# Chapter 11:  Controlled Generation and Fine-Tuning with Stable Diffusion
+# 第十一章：使用 Stable Diffusion 进行受控生成和微调
 [![](../img/gaia_book_cover_sm.png)](https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/)
 
-# Questions and Answers
-_Q: What is ControlNet, and how is it used in stable diffusion?_
+# 问题与解答
+_问：什么是 ControlNet，它如何在 Stable Diffusion 中使用？_
 
-A: ControlNet is a deep neural network that works with diffusion models like Stable Diffusion. During training, a control learns a specific task such as edge-detection or depth-mapping from a set of given inputs. It is used to train various controls that improve image-based generative tasks with a relatively small amount of data.
+答：ControlNet 是一种深度神经网络，与 Stable Diffusion 等扩散模型协同工作。在训练过程中，ControlNet 会从给定的输入集中学习特定任务，例如边缘检测或深度映射。它用于训练各种控制，这些控制使用相对少量的训练数据来改进基于图像的生成式任务。
 
-_Q: How does DreamBooth contribute to fine-tuning in stable diffusion?_
+_问：DreamBooth 如何促进 Stable Diffusion 的微调？_
 
-A: DreamBooth allows fine-tuning of a Stable Diffusion model using just a few images. It supports property modification and accessorization, allowing you to modify specific aspects of the input image, like color, or to preserve the subject but modify the image with accessories.
+答：DreamBooth 允许使用少量的图像来微调 Stable Diffusion 模型。它支持属性修改和配饰，允许你修改输入图像的特定方面，例如颜色，或保留主体但使用配饰修改图像。
 
-_Q: What is textual inversion, and how does it relate to fine-tuning?_
+_问：什么是文本反转，它与微调有什么关系？_
 
-A: Textual inversion is a lightweight fine-tuning technique used to personalize image-based generative models with just a few images. It works by learning a token embedding for a new text-based token representing a concept while keeping the remaining components of the Stable Diffusion model frozen.
+答：文本反转是一种轻量级的微调技术，用于使用少量的图像来个性化基于图像的生成式模型。它的工作原理是学习一个新文本标记的标记嵌入，该标记代表一个概念，同时保持 Stable Diffusion 模型的其余部分冻结。
 
-_Q: How does human alignment with RLHF enhance stable diffusion models?_
+_问：人类与 RLHF 的对齐如何增强 Stable Diffusion 模型？_
 
-A: Human Alignment with Reinforcement Learning from Human Feedback (RLHF) can fine-tune diffusion models to improve aspects like image compressibility, aesthetic quality, and prompt-image alignment. RLHF aligns multimodal models to generate content that is more helpful, honest, and harmless.
+答：人类与基于人类反馈的强化学习 (RLHF) 的对齐可以微调扩散模型，以改进图像可压缩性、美学质量和提示-图像对齐等方面。RLHF 使多模态模型能够生成更有益、更诚实且更无害的内容。
 
-_Q: How do PEFT-LoRA techniques aid in fine-tuning stable diffusion models?"_
+_问：PEFT-LoRA 技术如何帮助微调 Stable Diffusion 模型？"
 
-A: PEFT-LoRA (Parameter-Efficient Fine-Tuning with Low-Rank Adaptation) can be used to fine-tune the cross-attention layers of Stable Diffusion models. It provides an efficient way to adapt these models without the need for large-scale retraining.
+答：PEFT-LoRA（使用低秩自适应的参数高效微调）可用于微调 Stable Diffusion 模型的交叉注意力层。它提供了一种高效的方式来调整这些模型，而无需进行大规模的重新训练。
 
-_Q: What are the benefits of fine-tuning Stable Diffusion models?_
+_问：微调 Stable Diffusion 模型有哪些好处？_
 
-A: Fine-tuning Stable Diffusion models allows customization of image generation to include image data not captured in the original corpus of training data. This can include any image data such as images of people, pets, or logos, enabling the generation of realistic images that include subjects unknown to the base model.
+答：微调 Stable Diffusion 模型允许定制图像生成，以包括原始训练数据语料库中未捕获的图像数据。这可以包括任何图像数据，例如人、宠物或徽标的图像，从而能够生成包含基础模型未知主体的逼真图像。
 
-_Q: How does fine-tuning with stable diffusion models differ from other generative AI models?_
+_问：使用 Stable Diffusion 模型进行微调与其他生成式人工智能模型有何不同？_
 
-A: Fine-tuning techniques for diffusion models like Stable Diffusion are similar to those used for transformer-based large language models (LLMs). These techniques allow customization of image generation to include specific data sets or themes, similar to how LLMs are fine-tuned to align with specific textual data or styles.
+答：Stable Diffusion 等扩散模型的微调技术与用于基于 Transformer 的大型语言模型 (LLM) 的技术类似。这些技术允许定制图像生成，以包含特定数据集或主题，类似于 LLM 如何被微调以与特定的文本数据或风格保持一致。
 
-# Chapters
-* [Chapter 1](/01_intro) - Generative AI Use Cases, Fundamentals, Project Lifecycle
-* [Chapter 2](/02_prompt) - Prompt Engineering and In-Context Learning
-* [Chapter 3](/03_foundation) - Large-Language Foundation Models
-* [Chapter 4](/04_optimize) - Quantization and Distributed Computing
-* [Chapter 5](/05_finetune) - Fine-Tuning and Evaluation
-* [Chapter 6](/06_peft) - Parameter-efficient Fine Tuning (PEFT)
-* [Chapter 7](/07_rlhf) - Fine-tuning using Reinforcement Learning with RLHF
-* [Chapter 8](/08_deploy) - Optimize and Deploy Generative AI Applications
-* [Chapter 9](/09_rag) - Retrieval Augmented Generation (RAG) and Agents
-* [Chapter 10](/10_multimodal) - Multimodal Foundation Models
-* [Chapter 11](/11_diffusers) - Controlled Generation and Fine-Tuning with Stable Diffusion
-* [Chapter 12](/12_bedrock) - Amazon Bedrock Managed Service for Generative AI
+# 章节
+* [第一章](/01_intro) - 生成式人工智能用例、基础知识、项目生命周期
+* [第二章](/02_prompt) - 提示工程和上下文学习
+* [第三章](/03_foundation) - 大型语言基础模型
+* [第四章](/04_optimize) - 量化和分布式计算
+* [第五章](/05_finetune) - 微调和评估
+* [第六章](/06_peft) - 参数高效微调 (PEFT)
+* [第七章](/07_rlhf) - 使用带有 RLHF 的强化学习进行微调
+* [第八章](/08_deploy) - 优化和部署生成式人工智能应用程序
+* [第九章](/09_rag) - 检索增强生成 (RAG) 和代理
+* [第十章](/10_multimodal) - 多模态基础模型
+* [第十一章](/11_diffusers) - 使用 Stable Diffusion 进行受控生成和微调
+* [第十二章](/12_bedrock) - 用于生成式人工智能的 Amazon Bedrock 托管服务
 
-# Related Resources
-* YouTube Channel: https://youtube.generativeaionaws.com
-* Generative AI on AWS Meetup (Global, Virtual): https://meetup.generativeaionaws.com
-* Generative AI on AWS O'Reilly Book: https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
-* Data Science on AWS O'Reilly Book: https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/
+# 相关资源
+* YouTube 频道：https://youtube.generativeaionaws.com
+* 生成式人工智能 AWS Meetup（全球，虚拟）：https://meetup.generativeaionaws.com
+* AWS 上的生成式人工智能 O'Reilly 图书：https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
+* AWS 上的数据科学 O'Reilly 图书：https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/

@@ -1,20 +1,20 @@
-# DreamBooth training example for Stable Diffusion XL (SDXL)
+# Stable Diffusion XL (SDXL) 的 DreamBooth 训练示例
 
-[DreamBooth](https://arxiv.org/abs/2208.12242) is a method to personalize text2image models like stable diffusion given just a few (3~5) images of a subject.
+[DreamBooth](https://arxiv.org/abs/2208.12242) 是一种个性化文本到图像模型（如 Stable Diffusion）的方法，只需使用主题的几张（3-5 张）图像即可。
 
-The `train_dreambooth_lora_sdxl.py` script shows how to implement the training procedure and adapt it for [Stable Diffusion XL](https://huggingface.co/papers/2307.01952).
+`train_dreambooth_lora_sdxl.py` 脚本展示了如何实现训练过程并将其适应于 [Stable Diffusion XL](https://huggingface.co/papers/2307.01952)。
 
-> 💡 **Note**: For now, we only allow DreamBooth fine-tuning of the SDXL UNet via LoRA. LoRA is a parameter-efficient fine-tuning technique introduced in [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685) by *Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen*. 
+> 💡 **注意**: 目前，我们只允许通过 LoRA 对 SDXL UNet 进行 DreamBooth 微调。LoRA 是一种参数高效的微调技术，由 *Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen* 在 [LoRA: 大型语言模型的低秩自适应](https://arxiv.org/abs/2106.09685) 中提出。
 
-## Running locally with PyTorch
+## 使用 PyTorch 在本地运行
 
-### Installing the dependencies
+### 安装依赖项
 
-Before running the scripts, make sure to install the library's training dependencies:
+在运行脚本之前，请确保安装库的训练依赖项：
 
-**Important**
+**重要**
 
-To make sure you can successfully run the latest versions of the example scripts, we highly recommend **installing from source** and keeping the install up to date as we update the example scripts frequently and install some example-specific requirements. To do this, execute the following steps in a new virtual environment:
+为了确保你能够成功运行最新版本的示例脚本，我们强烈建议你 **从源代码安装** 并保持安装更新，因为我们经常更新示例脚本并安装一些示例特定的要求。为此，请在新虚拟环境中执行以下步骤：
 
 ```bash
 git clone https://github.com/huggingface/diffusers
@@ -22,37 +22,37 @@ cd diffusers
 pip install -e .
 ```
 
-Then cd in the `examples/dreambooth` folder and run
+然后进入 `examples/dreambooth` 文件夹并运行
 ```bash
 pip install -r requirements_sdxl.txt
 ```
 
-And initialize an [🤗Accelerate](https://github.com/huggingface/accelerate/) environment with:
+并使用以下命令初始化一个 [🤗Accelerate](https://github.com/huggingface/accelerate/) 环境：
 
 ```bash
 accelerate config
 ```
 
-Or for a default accelerate configuration without answering questions about your environment
+或者，对于不回答有关环境问题的默认加速配置
 
 ```bash
 accelerate config default
 ```
 
-Or if your environment doesn't support an interactive shell (e.g., a notebook)
+或者，如果你的环境不支持交互式 shell（例如，笔记本）
 
 ```python
 from accelerate.utils import write_basic_config
 write_basic_config()
 ```
 
-When running `accelerate config`, if we specify torch compile mode to True there can be dramatic speedups. 
+在运行 `accelerate config` 时，如果我们将 torch 编译模式设置为 True，则可以显着提高速度。
 
-### Dog toy example
+### 狗玩具示例
 
-Now let's get our dataset. For this example we will use some dog images: https://huggingface.co/datasets/diffusers/dog-example.
+现在让我们获取数据集。在本示例中，我们将使用一些狗的图像：https://huggingface.co/datasets/diffusers/dog-example。
 
-Let's first download it locally:
+让我们首先将其下载到本地：
 
 ```python
 from huggingface_hub import snapshot_download
@@ -65,9 +65,9 @@ snapshot_download(
 )
 ```
 
-This will also allow us to push the trained LoRA parameters to the Hugging Face Hub platform. 
+这也将允许我们将训练好的 LoRA 参数推送到 Hugging Face Hub 平台。
 
-Now, we can launch training using:
+现在，我们可以使用以下命令启动训练：
 
 ```bash
 export MODEL_NAME="stabilityai/stable-diffusion-xl-base-1.0"
@@ -96,16 +96,16 @@ accelerate launch train_dreambooth_lora_sdxl.py \
   --push_to_hub
 ```
 
-To better track our training experiments, we're using the following flags in the command above:
+为了更好地跟踪我们的训练实验，我们在上面的命令中使用了以下标志：
 
-* `report_to="wandb` will ensure the training runs are tracked on Weights and Biases. To use it, be sure to install `wandb` with `pip install wandb`.
-* `validation_prompt` and `validation_epochs` to allow the script to do a few validation inference runs. This allows us to qualitatively check if the training is progressing as expected. 
+* `report_to="wandb"` 将确保在 Weights and Biases 上跟踪训练运行。要使用它，请确保使用 `pip install wandb` 安装 `wandb`。
+* `validation_prompt` 和 `validation_epochs` 允许脚本执行一些验证推理运行。这使我们能够定性地检查训练是否按预期进行。
 
-Our experiments were conducted on a single 40GB A100 GPU.
+我们的实验是在单个 40GB A100 GPU 上进行的。
 
-### Dog toy example with < 16GB VRAM
+### 使用小于 16GB VRAM 的狗玩具示例
 
-By making use of [`gradient_checkpointing`](https://pytorch.org/docs/stable/checkpoint.html) (which is natively supported in Diffusers), [`xformers`](https://github.com/facebookresearch/xformers), and [`bitsandbytes`](https://github.com/TimDettmers/bitsandbytes) libraries, you can train SDXL LoRAs with less than 16GB of VRAM by adding the following flags to your accelerate launch command:
+通过利用 [`gradient_checkpointing`](https://pytorch.org/docs/stable/checkpoint.html)（在 Diffusers 中得到原生支持）、[`xformers`](https://github.com/facebookresearch/xformers) 和 [`bitsandbytes`](https://github.com/TimDettmers/bitsandbytes) 库，你可以通过在你的 accelerate launch 命令中添加以下标志来训练使用小于 16GB VRAM 的 SDXL LoRA：
 
 ```diff
 +  --enable_xformers_memory_efficient_attention \
@@ -114,16 +114,16 @@ By making use of [`gradient_checkpointing`](https://pytorch.org/docs/stable/chec
 +  --mixed_precision="fp16" \
 ```
 
-and making sure that you have the following libraries installed:
+并确保你已安装以下库：
 
 ```
 bitsandbytes>=0.40.0
 xformers>=0.0.20
 ```
 
-### Inference
+### 推理
 
-Once training is done, we can perform inference like so:
+训练完成后，我们可以执行以下推理：
 
 ```python
 from huggingface_hub.repocard import RepoCard
@@ -141,7 +141,7 @@ image = pipe("A picture of a sks dog in a bucket", num_inference_steps=25).image
 image.save("sks_dog.png")
 ```
 
-We can further refine the outputs with the [Refiner](https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0):
+我们可以使用 [Refiner](https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0) 进一步优化输出：
 
 ```python
 from huggingface_hub.repocard import RepoCard
@@ -152,12 +152,12 @@ lora_model_id = <"lora-sdxl-dreambooth-id">
 card = RepoCard.load(lora_model_id)
 base_model_id = card.data.to_dict()["base_model"]
 
-# Load the base pipeline and load the LoRA parameters into it. 
+# 加载基础管道并将 LoRA 参数加载到其中。
 pipe = DiffusionPipeline.from_pretrained(base_model_id, torch_dtype=torch.float16)
 pipe = pipe.to("cuda")
 pipe.load_lora_weights(lora_model_id)
 
-# Load the refiner.
+# 加载细化器。
 refiner = StableDiffusionXLImg2ImgPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float16, use_safetensors=True, variant="fp16"
 )
@@ -166,42 +166,42 @@ refiner.to("cuda")
 prompt = "A picture of a sks dog in a bucket"
 generator = torch.Generator("cuda").manual_seed(0)
 
-# Run inference.
+# 运行推理。
 image = pipe(prompt=prompt, output_type="latent", generator=generator).images[0]
 image = refiner(prompt=prompt, image=image[None, :], generator=generator).images[0]
 image.save("refined_sks_dog.png")
 ```
 
-Here's a side-by-side comparison of the with and without Refiner pipeline outputs:
+以下是使用和不使用 Refiner 管道的输出的并排比较：
 
-| Without Refiner | With Refiner |
+| 不使用 Refiner | 使用 Refiner |
 |---|---|
 | ![](https://huggingface.co/datasets/diffusers/docs-images/resolve/main/sd_xl/sks_dog.png) | ![](https://huggingface.co/datasets/diffusers/docs-images/resolve/main/sd_xl/refined_sks_dog.png) |
 
-### Training with text encoder(s)
+### 使用文本编码器进行训练
 
-Alongside the UNet, LoRA fine-tuning of the text encoders is also supported. To do so, just specify `--train_text_encoder` while launching training. Please keep the following points in mind:
+除了 UNet 之外，还支持对文本编码器进行 LoRA 微调。为此，只需在启动训练时指定 `--train_text_encoder`。请记住以下几点：
 
-* SDXL has two text encoders. So, we fine-tune both using LoRA.
-* When not fine-tuning the text encoders, we ALWAYS precompute the text embeddings to save memory.
+* SDXL 具有两个文本编码器。因此，我们使用 LoRA 对两者进行微调。
+* 在不微调文本编码器的情况下，我们始终预先计算文本嵌入以节省内存。
 
-### Specifying a better VAE
+### 使用更好的 VAE
 
-SDXL's VAE is known to suffer from numerical instability issues. This is why we also expose a CLI argument namely `--pretrained_vae_model_name_or_path` that lets you specify the location of a better VAE (such as [this one](https://huggingface.co/madebyollin/sdxl-vae-fp16-fix)).
+SDXL 的 VAE 存在数值不稳定性问题。这就是我们公开 CLI 参数 `--pretrained_vae_model_name_or_path` 的原因，该参数允许你指定更好 VAE 的位置（例如 [这个](https://huggingface.co/madebyollin/sdxl-vae-fp16-fix)）。
 
-## Notes
+## 注意
 
-In our experiments, we found that SDXL yields good initial results without extensive hyperparameter tuning. For example, without fine-tuning the text encoders and without using prior-preservation, we observed decent results. We didn't explore further hyper-parameter tuning experiments, but we do encourage the community to explore this avenue further and share their results with us 🤗
+在我们的实验中，我们发现 SDXL 在没有进行大量超参数调整的情况下就能产生良好的初始结果。例如，在不微调文本编码器且不使用先验保留的情况下，我们观察到了不错的结果。我们没有进行进一步的超参数调整实验，但我们鼓励社区进一步探索这一途径，并将他们的结果与我们分享 🤗
 
-## Results
+## 结果
 
-You can explore the results from a couple of our internal experiments by checking out this link: [https://wandb.ai/sayakpaul/dreambooth-lora-sd-xl](https://wandb.ai/sayakpaul/dreambooth-lora-sd-xl). Specifically, we used the same script with the exact same hyperparameters on the following datasets:
+你可以通过查看此链接来探索我们的一些内部实验的结果：[https://wandb.ai/sayakpaul/dreambooth-lora-sd-xl](https://wandb.ai/sayakpaul/dreambooth-lora-sd-xl)。具体来说，我们在以下数据集上使用相同的脚本和完全相同的超参数：
 
-* [Dogs](https://huggingface.co/datasets/diffusers/dog-example)
-* [Starbucks logo](https://huggingface.co/datasets/diffusers/starbucks-example)
-* [Mr. Potato Head](https://huggingface.co/datasets/diffusers/potato-head-example)
-* [Keramer face](https://huggingface.co/datasets/diffusers/keramer-face-example)
+* [狗](https://huggingface.co/datasets/diffusers/dog-example)
+* [星巴克 logo](https://huggingface.co/datasets/diffusers/starbucks-example)
+* [土豆先生](https://huggingface.co/datasets/diffusers/potato-head-example)
+* [Keramer 的脸](https://huggingface.co/datasets/diffusers/keramer-face-example)
 
-## Running on a free-tier Colab Notebook
+## 在免费层级 Colab 笔记本上运行
 
-Check out [this notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/SDXL_DreamBooth_LoRA_.ipynb). 
+查看 [这个笔记本](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/SDXL_DreamBooth_LoRA_.ipynb)。 

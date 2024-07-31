@@ -1,48 +1,48 @@
-# Chapter 1: Generative AI Use Cases, Fundamentals, and Project Life Cycle
+# 第一章：生成式人工智能用例、基础知识和项目生命周期
 [![](../img/gaia_book_cover_sm.png)](https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/)
 
-# Questions and Answers
+# 问题与解答
 
-_Q: What are some common use cases for Generative AI?_
+_问：生成式人工智能有哪些常见用例？_
 
-A: Intelligent search, automated customer-support chatbots, dialog summarization, not-safe-for-work (NSFW) content moderation, personalized product videos, source code generation, and others.
+答：智能搜索、自动客户支持聊天机器人、对话摘要、不安全内容 (NSFW) 审核、个性化产品视频、源代码生成等。
 
-_Q: How do project life cycle phases impact Generative AI development?_
+_问：项目生命周期阶段如何影响生成式人工智能开发？_
 
-A: The project life cycle includes stages like defining a use case, prompt engineering, selecting a foundation model, fine-tuning, aligning with human values, deploying the model, and integrating with external data sources, which impact generative AI development. 
+答：项目生命周期包括定义用例、提示工程、选择基础模型、微调、与人类价值观保持一致、部署模型以及与外部数据源集成等阶段，这些阶段都会影响生成式人工智能开发。
 
-_Q: How are foundation models and model hubs important in Generative AI?_
+_问：基础模型和模型中心在生成式人工智能中为何重要？_
 
-A: Foundation models are large and complex neural network models with billions of parameters, trained on massive data. Model hubs, like Hugging Face Model Hub, PyTorch Hub, or Amazon SageMaker JumpStart, offer a collection of models with detailed descriptions and use cases, providing a starting point for generative AI projects.
+答：基础模型是大型复杂的包含数十亿参数的神经网络模型，使用海量数据进行训练。模型中心（如 Hugging Face 模型中心、PyTorch Hub 或 Amazon SageMaker JumpStart）提供了一系列模型，并附带详细的描述和用例，为生成式人工智能项目提供了起点。
 
-_Q: Describe the Generative AI project life cycle?_
+_问：请描述生成式人工智能项目生命周期？_
 
-A: The generative AI project life cycle, though not definitive, guides through important parts of the application journey. It helps in gaining intuition, avoiding potential difficulties, and improving decision-making at each step.
+答：生成式人工智能项目生命周期虽然不是确定的，但它指导了应用程序旅程中的重要部分。它有助于获得直觉、避免潜在的困难，并在每个步骤中改进决策。
 
-_Q: What makes AWS a suitable platform for building Generative AI foundation models?_
+_问：是什么让 AWS 成为构建生成式人工智能基础模型的合适平台？_
 
-A: AWS offers a range of frameworks and infrastructure, including optimized compute instances for building foundation models, making it suitable for using generative AI with complex entities like human language, images, videos, and audio clips. 
+答：AWS 提供了一系列框架和基础设施，包括用于构建基础模型的优化计算实例，使其适用于将生成式人工智能与人类语言、图像、视频和音频片段等复杂实体结合使用。
 
-_Q: How does Generative AI on AWS differ from other platforms?_
+_问：AWS 上的生成式人工智能与其他平台有何不同？_
 
-A: AWS offers increased flexibility, choice, enterprise-grade security, state-of-the-art generative AI capabilities, low operational overhead through fully managed services, and quick access to ready-to-use solutions. AWS allows developers and scientists to build scalable and secure generative AI applications quickly and safely. 
+答：AWS 提供了更高的灵活性、更多选择、企业级安全性、最先进的生成式人工智能功能、通过完全托管服务实现的低运营开销，以及对随时可用解决方案的快速访问。AWS 使开发人员和科学家能够快速、安全地构建可扩展且安全的生成式人工智能应用程序。
 
-# Chapters
-* [Chapter 1](/01_intro) - Generative AI Use Cases, Fundamentals, Project Lifecycle
-* [Chapter 2](/02_prompt) - Prompt Engineering and In-Context Learning
-* [Chapter 3](/03_foundation) - Large-Language Foundation Models
-* [Chapter 4](/04_optimize) - Quantization and Distributed Computing
-* [Chapter 5](/05_finetune) - Fine-Tuning and Evaluation
-* [Chapter 6](/06_peft) - Parameter-efficient Fine Tuning (PEFT)
-* [Chapter 7](/07_rlhf) - Fine-tuning using Reinforcement Learning with RLHF
-* [Chapter 8](/08_deploy) - Optimize and Deploy Generative AI Applications
-* [Chapter 9](/09_rag) - Retrieval Augmented Generation (RAG) and Agents
-* [Chapter 10](/10_multimodal) - Multimodal Foundation Models
-* [Chapter 11](/11_diffusers) - Controlled Generation and Fine-Tuning with Stable Diffusion
-* [Chapter 12](/12_bedrock) - Amazon Bedrock Managed Service for Generative AI
+# 章节
+* [第一章](/01_intro) - 生成式人工智能用例、基础知识、项目生命周期
+* [第二章](/02_prompt) - 提示工程和上下文学习
+* [第三章](/03_foundation) - 大型语言基础模型
+* [第四章](/04_optimize) - 量化和分布式计算
+* [第五章](/05_finetune) - 微调和评估
+* [第六章](/06_peft) - 参数高效微调 (PEFT)
+* [第七章](/07_rlhf) - 使用带有 RLHF 的强化学习进行微调
+* [第八章](/08_deploy) - 优化和部署生成式人工智能应用程序
+* [第九章](/09_rag) - 检索增强生成 (RAG) 和代理
+* [第十章](/10_multimodal) - 多模态基础模型
+* [第十一章](/11_diffusers) - 使用 Stable Diffusion 进行受控生成和微调
+* [第十二章](/12_bedrock) - 用于生成式人工智能的 Amazon Bedrock 托管服务
 
-# Related Resources
-* YouTube Channel: https://youtube.generativeaionaws.com
-* Generative AI on AWS Meetup (Global, Virtual): https://meetup.generativeaionaws.com
-* Generative AI on AWS O'Reilly Book: https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
-* Data Science on AWS O'Reilly Book: https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/
+# 相关资源
+* YouTube 频道：https://youtube.generativeaionaws.com
+* 生成式人工智能 AWS Meetup（全球，虚拟）：https://meetup.generativeaionaws.com
+* AWS 上的生成式人工智能 O'Reilly 图书：https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
+* AWS 上的数据科学 O'Reilly 图书：https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/

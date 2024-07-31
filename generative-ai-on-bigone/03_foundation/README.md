@@ -1,56 +1,56 @@
-# Chapter 3: Large-Language Foundation Models
+# 第三章：大型语言基础模型
 [![](../img/gaia_book_cover_sm.png)](https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/)
 
-# Questions and Answers
+# 问题与解答
 
-_Q: What are large-language foundation models?_
+_问：什么是大型语言基础模型？_
 
-A: Large-language foundation models are generative AI models trained on vast amounts of public data from the internet across various languages and topics. They have a deep understanding of human language and extensive knowledge across many domains within their parameters.
+答：大型语言基础模型是使用来自互联网的海量公共数据（涵盖各种语言和主题）训练的生成式人工智能模型。它们对其参数范围内的人类语言和许多领域的知识有深入的理解。
 
-_Q: Why are pretraining datasets important in model development?_
+_问：为什么预训练数据集在模型开发中很重要？_
 
-A: Pretraining datasets are crucial as they provide the bulk of data (often terabytes or petabytes) that a generative model learns from. Popular datasets include Wikipedia and Common Crawl.
+答：预训练数据集至关重要，因为它们提供了生成式模型学习的大部分数据（通常为 TB 或 PB 级）。流行的数据集包括维基百科和 Common Crawl。
 
-_Q: How do tokenizers function in these models?_
+_问：标记器在这些模型中如何运作？_
 
-A: Tokenizers in these models convert human-readable text into a vector of token_ids, where each token_id represents a token in the model’s vocabulary. This numeric representation of tokens forms the basis for further processing by the model.
+答：这些模型中的标记器将人类可读的文本转换为 token_id 向量，其中每个 token_id 代表模型词汇表中的一个标记。这种标记的数字表示构成了模型进一步处理的基础。
 
-_Q: What is the significance of embedding vectors in large-language models?_
+_问：嵌入向量在大型语言模型中的意义是什么？_
 
-A: Embedding vectors in large-language models are crucial as they represent any entity (text, images, videos, audio) in a high-dimensional vector space. They encode the meaning and context of tokens for the model to understand human language and semantic similarity of words.
+答：大型语言模型中的嵌入向量至关重要，因为它们在高维向量空间中表示任何实体（文本、图像、视频、音频）。它们对标记的含义和上下文进行编码，以便模型理解人类语言和单词的语义相似性。
 
-_Q: Can you describe the transformer architecture used in these models?_
+_问：你能描述一下这些模型中使用的 Transformer 架构吗？_
 
-A: The Transformer architecture, central to modern language models like BERT and GPT, consists of an input token context window, embeddings, encoder self-attention layers, decoder, and softmax outputs. It's used for generating model completions to input prompts and gaining contextual understanding of language during pretraining and fine-tuning.
+答：Transformer 架构是 BERT 和 GPT 等现代语言模型的核心，它由输入标记上下文窗口、嵌入、编码器自注意力层、解码器和 softmax 输出组成。它用于生成对输入提示的模型补全，并在预训练和微调期间获得对语言的上下文理解。
 
-_Q: How do input and context windows affect model performance?_
+_问：输入和上下文窗口如何影响模型性能？_
 
-A: The input and context window sizes, defining the number of tokens a model can process at once, significantly affect performance. The window size influences the model's capacity to understand and generate contextually rich text. Modern sizes are measured in the 100,000's.
+答：输入和上下文窗口大小定义了模型一次可以处理的标记数量，它们会显著影响性能。窗口大小会影响模型理解和生成上下文丰富的文本的能力。现代窗口大小以 100,000 为单位进行度量。
 
-_Q: What are scaling laws in the context of large-language models?_
+_问：什么是大型语言模型背景下的缩放法则？_
 
-A: Scaling laws describe the relationship between model size, dataset size, and compute budget for generative models. They suggest that increasing the number of tokens or model parameters enhances performance, but this requires a higher compute budget, often measured in floating point operations per second (FLOPs).
+答：缩放法则描述了生成式模型的模型大小、数据集大小和计算预算之间的关系。它们表明，增加标记数量或模型参数可以提高性能，但这需要更高的计算预算，通常以每秒浮点运算次数 (FLOPs) 来衡量。
 
-_Q: What challenges do large-language models face in terms of computational resources?_
+_问：大型语言模型在计算资源方面面临哪些挑战？_
 
-A: Large generative models face challenges like GPU memory limitations and distributed-computing overhead. Strategies like quantization to reduce memory requirements and distributed computing techniques like fully sharded data parallel (FSDP) are used to efficiently scale model training across multiple GPUs.
+答：大型生成式模型面临着 GPU 内存限制和分布式计算开销等挑战。量化等用于减少内存需求的策略以及完全分片数据并行 (FSDP) 等分布式计算技术被用于跨多个 GPU 有效地扩展模型训练。
 
-# Chapters
-* [Chapter 1](/01_intro) - Generative AI Use Cases, Fundamentals, Project Lifecycle
-* [Chapter 2](/02_prompt) - Prompt Engineering and In-Context Learning
-* [Chapter 3](/03_foundation) - Large-Language Foundation Models
-* [Chapter 4](/04_optimize) - Quantization and Distributed Computing
-* [Chapter 5](/05_finetune) - Fine-Tuning and Evaluation
-* [Chapter 6](/06_peft) - Parameter-efficient Fine Tuning (PEFT)
-* [Chapter 7](/07_rlhf) - Fine-tuning using Reinforcement Learning with RLHF
-* [Chapter 8](/08_deploy) - Optimize and Deploy Generative AI Applications
-* [Chapter 9](/09_rag) - Retrieval Augmented Generation (RAG) and Agents
-* [Chapter 10](/10_multimodal) - Multimodal Foundation Models
-* [Chapter 11](/11_diffusers) - Controlled Generation and Fine-Tuning with Stable Diffusion
-* [Chapter 12](/12_bedrock) - Amazon Bedrock Managed Service for Generative AI
+# 章节
+* [第一章](/01_intro) - 生成式人工智能用例、基础知识、项目生命周期
+* [第二章](/02_prompt) - 提示工程和上下文学习
+* [第三章](/03_foundation) - 大型语言基础模型
+* [第四章](/04_optimize) - 量化和分布式计算
+* [第五章](/05_finetune) - 微调和评估
+* [第六章](/06_peft) - 参数高效微调 (PEFT)
+* [第七章](/07_rlhf) - 使用带有 RLHF 的强化学习进行微调
+* [第八章](/08_deploy) - 优化和部署生成式人工智能应用程序
+* [第九章](/09_rag) - 检索增强生成 (RAG) 和代理
+* [第十章](/10_multimodal) - 多模态基础模型
+* [第十一章](/11_diffusers) - 使用 Stable Diffusion 进行受控生成和微调
+* [第十二章](/12_bedrock) - 用于生成式人工智能的 Amazon Bedrock 托管服务
 
-# Related Resources
-* YouTube Channel: https://youtube.generativeaionaws.com
-* Generative AI on AWS Meetup (Global, Virtual): https://meetup.generativeaionaws.com
-* Generative AI on AWS O'Reilly Book: https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
-* Data Science on AWS O'Reilly Book: https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/
+# 相关资源
+* YouTube 频道：https://youtube.generativeaionaws.com
+* 生成式人工智能 AWS Meetup（全球，虚拟）：https://meetup.generativeaionaws.com
+* AWS 上的生成式人工智能 O'Reilly 图书：https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
+* AWS 上的数据科学 O'Reilly 图书：https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/

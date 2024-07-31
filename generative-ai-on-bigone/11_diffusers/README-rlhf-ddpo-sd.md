@@ -1,12 +1,12 @@
-# https://github.com/kvablack/ddpo-pytorch
 # ddpo-pytorch
 
-This is an implementation of [Denoising Diffusion Policy Optimization (DDPO)](https://rl-diffusion.github.io/) in PyTorch with support for [low-rank adaptation (LoRA)](https://huggingface.co/docs/diffusers/training/lora). Unlike our original research code (which you can find [here](https://github.com/jannerm/ddpo)), this implementation runs on GPUs, and if LoRA is enabled, requires less than 10GB of GPU memory to finetune Stable Diffusion!
+这是一个使用 PyTorch 实现的 [去噪扩散策略优化 (DDPO)](https://rl-diffusion.github.io/)，支持 [低秩自适应 (LoRA)](https://huggingface.co/docs/diffusers/training/lora)。与我们最初的研究代码（你可以在 [这里](https://github.com/jannerm/ddpo) 找到）不同，这个实现是在 GPU 上运行的，如果启用了 LoRA，则需要不到 10GB 的 GPU 内存来微调 Stable Diffusion！
 
 ![DDPO](teaser.jpg)
 
-## Installation
-Requires Python 3.10 or newer.
+## 安装
+
+需要 Python 3.10 或更高版本。
 
 ```bash
 git clone git@github.com:kvablack/ddpo-pytorch.git
@@ -14,47 +14,53 @@ cd ddpo-pytorch
 pip install -e .
 ```
 
-## Usage
+## 使用
+
 ```bash
 accelerate launch scripts/train.py
 ```
-This will immediately start finetuning Stable Diffusion v1.5 for compressibility on all available GPUs using the config from `config/base.py`. It should work as long as each GPU has at least 10GB of memory. If you don't want to log into wandb, you can run `wandb disabled` before the above command.
 
-Please note that the default hyperparameters in `config/base.py` are not meant to achieve good performance, they are just to get the code up and running as fast as possible. I would not expect to get good results without using a much larger number of samples per epoch and gradient accumulation steps.
+这将立即开始使用 `config/base.py` 中的配置，在所有可用的 GPU 上对 Stable Diffusion v1.5 进行可压缩性微调。只要每个 GPU 至少有 10GB 的内存，它应该可以正常工作。如果你不想登录到 wandb，你可以在执行上述命令之前运行 `wandb disabled`。
 
-## Important Hyperparameters
+请注意，`config/base.py` 中的默认超参数并非旨在获得良好的性能，它们只是为了让代码尽快运行起来。我预计在不使用每个 epoch 更多的样本数量和梯度累积步骤的情况下，不会获得良好的结果。
 
-A detailed explanation of all the hyperparameters can be found in `config/base.py`. Here are a few of the important ones.
+## 重要的超参数
 
-### prompt_fn and reward_fn
-At a high level, the problem of finetuning a diffusion model is defined by 2 things: a set of prompts to generate images, and a reward function to evaluate those images. The prompts are defined by a `prompt_fn` which takes no arguments and generates a random prompt each time it is called. The reward function is defined by a `reward_fn` which takes in a batch of images and returns a batch of rewards for those images. All of the prompt and reward functions currently implemented can be found in `ddpo_pytorch/prompts.py` and `ddpo_pytorch/rewards.py`, respectively.
+可以在 `config/base.py` 中找到所有超参数的详细解释。这里列出了一些重要的超参数。
 
-### Batch Sizes and Accumulation Steps
-Each DDPO epoch consists of generating a batch of images, computing their rewards, and then doing some training steps on those images. One important hyperparameter is the number of images generated per epoch; you want enough images to get a good estimate of the average reward and the policy gradient. Another important hyperparameter is the number of training steps per epoch.
+### prompt_fn 和 reward_fn
 
-However, these are not defined explicitly but are instead defined implicitly by several other hyperparameters. First note that all batch sizes are **per GPU**. Therefore, the total number of images generated per epoch is `sample.batch_size * num_gpus * sample.num_batches_per_epoch`. The effective total training batch size (if you include multi-GPU training and gradient accumulation) is `train.batch_size * num_gpus * train.gradient_accumulation_steps`. The number of training steps per epoch is the first number divided by the second number, or `(sample.batch_size * sample.num_batches_per_epoch) / (train.batch_size * train.gradient_accumulation_steps)`.
+从高层次上看，微调扩散模型的问题由两件事定义：一组用于生成图像的提示，以及一个用于评估这些图像的奖励函数。提示由 `prompt_fn` 定义，该函数不接受任何参数，并在每次调用时生成一个随机提示。奖励函数由 `reward_fn` 定义，该函数接受一批图像，并返回这些图像的一批奖励。当前实现的所有提示和奖励函数分别可以在 `ddpo_pytorch/prompts.py` 和 `ddpo_pytorch/rewards.py` 中找到。
 
-(This assumes that `train.num_inner_epochs == 1`. If this is set to a higher number, then training will loop over the same batch of images multiple times before generating a new batch of images, and the number of training steps per epoch will be multiplied accordingly.)
+### 批量大小和累积步骤
 
-At the beginning of each training run, the script will print out the calculated value for the number of images generated per epoch, the effective total training batch size, and the number of training steps per epoch. Make sure to double-check these numbers!
+每个 DDPO epoch 包含生成一批图像、计算它们的奖励，然后对这些图像进行一些训练步骤。一个重要的超参数是每个 epoch 生成的图像数量；你希望有足够的图像来获得平均奖励和策略梯度的良好估计。另一个重要的超参数是每个 epoch 的训练步骤数量。
 
-## Reproducing Results
-The image at the top of this README was generated using LoRA! However, I did use a fairly powerful DGX machine with 8xA100 GPUs, on which each experiment took about 4 hours for 100 epochs. In order to run the same experiments with a single small GPU, you would set `sample.batch_size = train.batch_size = 1` and multiply `sample.num_batches_per_epoch` and `train.gradient_accumulation_steps` accordingly.
+但是，这些不是明确定义的，而是由几个其他超参数隐式定义的。首先要注意，所有批量大小都是 **每个 GPU** 的。因此，每个 epoch 生成的图像总数为 `sample.batch_size * num_gpus * sample.num_batches_per_epoch`。有效的总训练批量大小（如果你包含多 GPU 训练和梯度累积）为 `train.batch_size * num_gpus * train.gradient_accumulation_steps`。每个 epoch 的训练步骤数量是第一个数字除以第二个数字，即 `(sample.batch_size * sample.num_batches_per_epoch) / (train.batch_size * train.gradient_accumulation_steps)`。
 
-You can find the exact configs I used for the 4 experiments in `config/dgx.py`. For example, to run the aesthetic quality experiment:
+（这假设 `train.num_inner_epochs == 1`。如果将其设置为更高的数字，则训练将在生成新批图像之前多次循环遍历同一批图像，并且每个 epoch 的训练步骤数量将相应地乘以。）
+
+在每次训练运行的开始，脚本将打印出计算出的每个 epoch 生成的图像数量、有效的总训练批量大小和每个 epoch 的训练步骤数量的值。请务必仔细检查这些数字！
+
+## 复制结果
+
+README 顶部的图像使用 LoRA 生成的！但是，我确实使用了一台相当强大的 DGX 机器，配备 8 个 A100 GPU，每个实验需要大约 4 个小时才能完成 100 个 epoch。为了使用单个小型 GPU 运行相同的实验，你需要将 `sample.batch_size = train.batch_size = 1`，并相应地乘以 `sample.num_batches_per_epoch` 和 `train.gradient_accumulation_steps`。
+
+你可以在 `config/dgx.py` 中找到我用于 4 个实验的精确配置。例如，要运行美学质量实验：
+
 ```bash
 accelerate launch scripts/train.py --config config/dgx.py:aesthetic
 ```
 
-If you want to run the LLaVA prompt-image alignment experiments, you need to dedicate a few GPUs to running LLaVA inference using [this repo](https://github.com/kvablack/LLaVA-server/).
+如果你想运行 LLaVA 提示-图像对齐实验，你需要使用 [这个仓库](https://github.com/kvablack/LLaVA-server/) 将几个 GPU 专用于运行 LLaVA 推理。
 
-## Reward Curves
+## 奖励曲线
+
 <img src="https://github.com/kvablack/ddpo-pytorch/assets/12429600/593c9be3-e2a7-45d8-b1ae-ca4f77197c18" width="49%">
 <img src="https://github.com/kvablack/ddpo-pytorch/assets/12429600/d12fef0a-68b8-4cef-a9b8-cb1b6878fcec" width="49%">
 <img src="https://github.com/kvablack/ddpo-pytorch/assets/12429600/68c6a7ac-0c31-4de6-a7a0-1f9bb20202a4" width="49%">
 <img src="https://github.com/kvablack/ddpo-pytorch/assets/12429600/393a929e-36af-46f2-8022-33384bdae1c8" width="49%">
 
-As you can see with the aesthetic experiment, if you run for long enough the algorithm eventually experiences instability. This might be remedied by decaying the learning rate. Interestingly, however, the actual qualitative samples you get after the instability are mostly fine -- the drop in the mean is caused by a few low-scoring outliers. This is clear from the full reward histogram, which you can see if you go to an individual run in wandb.
+如美学实验所示，如果你运行时间足够长，算法最终会遇到不稳定性。这可以通过衰减学习率来解决。有趣的是，然而，在不稳定性之后获得的实际定性样本大多很好——平均值的下降是由一些得分低的异常值造成的。从完整的奖励直方图可以清楚地看出这一点，如果你在 wandb 中查看单个运行，就可以看到它。
 
 <img src="https://github.com/kvablack/ddpo-pytorch/assets/12429600/eda43bef-6363-45b5-829d-466502e0a0e3" width="50%">
-

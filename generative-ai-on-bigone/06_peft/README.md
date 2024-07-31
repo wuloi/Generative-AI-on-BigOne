@@ -1,56 +1,56 @@
-# Chapter 6: Parameter-Efficient Fine-Tuning (PEFT)
+# 第六章：参数高效微调 (PEFT)
 [![](../img/gaia_book_cover_sm.png)](https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/)
 
-# Questions and Answers
+# 问题与解答
 
-_Q: In what scenarios is PEFT preferable over traditional fine-tuning methods?_
+_问：在哪些情况下，PEFT 比传统的微调方法更可取？_
 
-A: PEFT is preferable in scenarios where model efficiency is crucial, and only specific parts of the model need adaptation, reducing the computational resources required. 
+答：在模型效率至关重要，并且只需要调整模型的特定部分，从而减少所需计算资源的情况下，PEFT 更可取。
 
-_Q: How does PEFT impact the adaptability of Generative AI models?_
+_问：PEFT 如何影响生成式人工智能模型的适应性？_
 
-A: PEFT enhances the adaptability of Generative AI models by allowing efficient fine-tuning of specific parts, reducing the need to train the entire model. 
+答：PEFT 通过允许对特定部分进行高效微调，减少了训练整个模型的需求，从而增强了生成式人工智能模型的适应性。
 
-_Q: What is the significance of target modules and layers in PEFT?_
+_问：目标模块和层在 PEFT 中的意义是什么？_
 
-A: Target modules and layers in PEFT are specific parts of the model that are fine-tuned, allowing for efficient training and adaptation without modifying the entire model. 
+答：PEFT 中的目标模块和层是模型中经过微调的特定部分，允许进行高效的训练和调整，而无需修改整个模型。
 
-_Q: What are LoRA and QLoRA PEFT techniques, and how do they function?_
+_问：什么是 LoRA 和 QLoRA PEFT 技术，它们是如何工作的？_
 
-A: LoRA (Low-Rank Adaptation) is a technique applied to linear layers of a model to adapt it with minimal changes. QLoRA (Quantized LoRA) involves additional quantization for more efficiency.
+答：LoRA（低秩自适应）是一种应用于模型线性层的技术，以最小的更改来调整模型。QLoRA（量化 LoRA）涉及额外的量化以提高效率。
 
-_Q: How does the rank of LoRA influence model performance?_
+_问：LoRA 的秩如何影响模型性能？_
 
-A: The rank of LoRA, which refers to the number of parameters added, influences the balance between model adaptability and efficiency. Higher ranks can lead to better performance but at the cost of efficiency.
+答：LoRA 的秩是指添加的参数数量，它影响模型适应性和效率之间的平衡。更高的秩可以带来更好的性能，但会以牺牲效率为代价。
 
-_Q: How does maintaining separate LoRA adapters benefit the model?_
+_问：维护单独的 LoRA 适配器对模型有何好处？_
 
-A: Maintaining separate LoRA adapters allows for the original model to remain unchanged. These adapters can be merged with the original model or kept separate for flexibility.
+答：维护单独的 LoRA 适配器允许原始模型保持不变。这些适配器可以与原始模型合并，也可以单独保存以提高灵活性。
 
-_Q: What is prompt tuning, and how does it differ from soft prompts?_
+_问：什么是提示调整，它与软提示有何不同？_
 
-A: Prompt tuning involves adjusting the input prompts to guide the model's output. Soft prompts refer to virtual tokens generated to achieve similar effects. The document does not elaborate on their differences.
+答：提示调整涉及调整输入提示以引导模型的输出。软提示是指为实现类似效果而生成的虚拟标记。本文档没有详细说明它们之间的区别。
 
-_Q: How do performance comparisons between full fine-tuning and PEFT/LoRA help model optimization?_
+_问：完整微调和 PEFT/LoRA 之间的性能比较如何帮助模型优化？_
 
-A: Performance comparisons between full fine-tuning and LoRA help in understanding the trade-offs between model efficiency and adaptability, guiding optimization decisions.
+答：完整微调和 LoRA 之间的性能比较有助于理解模型效率和适应性之间的权衡，从而指导优化决策。
 
-# Chapters
-* [Chapter 1](/01_intro) - Generative AI Use Cases, Fundamentals, Project Lifecycle
-* [Chapter 2](/02_prompt) - Prompt Engineering and In-Context Learning
-* [Chapter 3](/03_foundation) - Large-Language Foundation Models
-* [Chapter 4](/04_optimize) - Quantization and Distributed Computing
-* [Chapter 5](/05_finetune) - Fine-Tuning and Evaluation
-* [Chapter 6](/06_peft) - Parameter-efficient Fine Tuning (PEFT)
-* [Chapter 7](/07_rlhf) - Fine-tuning using Reinforcement Learning with RLHF
-* [Chapter 8](/08_deploy) - Optimize and Deploy Generative AI Applications
-* [Chapter 9](/09_rag) - Retrieval Augmented Generation (RAG) and Agents
-* [Chapter 10](/10_multimodal) - Multimodal Foundation Models
-* [Chapter 11](/11_diffusers) - Controlled Generation and Fine-Tuning with Stable Diffusion
-* [Chapter 12](/12_bedrock) - Amazon Bedrock Managed Service for Generative AI
+# 章节
+* [第一章](/01_intro) - 生成式人工智能用例、基础知识、项目生命周期
+* [第二章](/02_prompt) - 提示工程和上下文学习
+* [第三章](/03_foundation) - 大型语言基础模型
+* [第四章](/04_optimize) - 量化和分布式计算
+* [第五章](/05_finetune) - 微调和评估
+* [第六章](/06_peft) - 参数高效微调 (PEFT)
+* [第七章](/07_rlhf) - 使用带有 RLHF 的强化学习进行微调
+* [第八章](/08_deploy) - 优化和部署生成式人工智能应用程序
+* [第九章](/09_rag) - 检索增强生成 (RAG) 和代理
+* [第十章](/10_multimodal) - 多模态基础模型
+* [第十一章](/11_diffusers) - 使用 Stable Diffusion 进行受控生成和微调
+* [第十二章](/12_bedrock) - 用于生成式人工智能的 Amazon Bedrock 托管服务
 
-# Related Resources
-* YouTube Channel: https://youtube.generativeaionaws.com
-* Generative AI on AWS Meetup (Global, Virtual): https://meetup.generativeaionaws.com
-* Generative AI on AWS O'Reilly Book: https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
-* Data Science on AWS O'Reilly Book: https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/
+# 相关资源
+* YouTube 频道：https://youtube.generativeaionaws.com
+* 生成式人工智能 AWS Meetup（全球，虚拟）：https://meetup.generativeaionaws.com
+* AWS 上的生成式人工智能 O'Reilly 图书：https://www.amazon.com/Generative-AI-AWS-Multimodal-Applications/dp/1098159225/
+* AWS 上的数据科学 O'Reilly 图书：https://www.amazon.com/Data-Science-AWS-End-End/dp/1492079391/
